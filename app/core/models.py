@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
     def CreateSuperUser(self, email, password):
         """creates a new super user"""
         user = self.CreateUser(email, password)
-        user.IsStaff = True
+        user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
@@ -27,7 +27,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     """create user model that support email instead of username"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    IsActive = models.BooleanField(default=True)
-    IsStaff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
     objects = UserManager()
     USERNAME_FIELD = "email"

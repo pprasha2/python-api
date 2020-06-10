@@ -8,7 +8,7 @@ class ModelTest(TestCase):
         """test new user creation """
         email = "pprasha2@gmail.com"
         password = "test123"
-        user = get_user_model().objects.CreateUser(
+        user = get_user_model().objects.create_user(
             email=email,
             password=password
         )
@@ -19,7 +19,7 @@ class ModelTest(TestCase):
         """test that added user's email is in lower case"""
         email = "pprasha2@gmail.COM"
         password = "test123"
-        user = get_user_model().objects.CreateUser(
+        user = get_user_model().objects.create_user(
             email=email,
             password=password
         )
@@ -28,11 +28,11 @@ class ModelTest(TestCase):
     def testInvalidEmail(self):
         """test if invalid email for new user"""
         with self.assertRaises(ValueError):
-            get_user_model().objects.CreateUser(None, "test123")
+            get_user_model().objects.create_user(None, "test123")
 
     def testCreateSuperUser(self):
         """test creating a superuser"""
-        user = get_user_model().objects.CreateSuperUser(
+        user = get_user_model().objects.create_superuser(
             "pprasha2@gmail.com",
             "test123"
         )
